@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import UploadForm from './components/UploadForm';
+import ChatInterface from './components/ChatInterface';
 import './App.css';
 
 function App() {
+  const [sessionId, setSessionId] = useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Medical Doc Chatbot</h1>
+      {!sessionId ? (
+        <UploadForm onUpload={setSessionId} />
+      ) : (
+        <ChatInterface sessionId={sessionId} />
+      )}
     </div>
   );
 }
